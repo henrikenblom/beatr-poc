@@ -1,0 +1,7 @@
+{
+  "name": "beatr-poc",
+  "type": "angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
