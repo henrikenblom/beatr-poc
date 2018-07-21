@@ -17,7 +17,7 @@ export class AuthService {
     public user: User;
 
     constructor(private router: Router,
-                private afAuth: AngularFireAuth,
+                public afAuth: AngularFireAuth,
                 private googlePlus: GooglePlus,
                 private platform: Platform) {
         this.fetchCurrentUser();
@@ -36,12 +36,12 @@ export class AuthService {
 
     private async nativeGoogleLogin(): Promise<User> {
         try {
-            const gplusUser = await this.googlePlus.login({
+            const googlePlusUser = await this.googlePlus.login({
                 'webClientId': webClientId,
                 'offline': true,
                 'scopes': 'profile email'
             });
-            return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken));
+            return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(googlePlusUser.idToken));
         } catch (e) {
             console.error(e);
         }
